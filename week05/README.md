@@ -6,6 +6,8 @@
 
 ## Problem 3. [Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/description/?envType=problem-list-v2&envId=linked-list)
 
-## Problem 4. [Fibonacci Number](https://leetcode.com/problems/fibonacci-number/description/?envType=problem-list-v2&envId=recursion)
+## Problem 4. [Merge Two Sorted Lists]([https://leetcode.com/problems/fibonacci-number/description/?envType=problem-list-v2&envId=recursion](https://leetcode.com/problems/merge-two-sorted-lists/description/?envType=problem-list-v2&envId=recursion)
+
+recursive로 풀어보기
 
 ## Problem 5. [1, 2, 3 더하기](https://www.acmicpc.net/problem/9095)
