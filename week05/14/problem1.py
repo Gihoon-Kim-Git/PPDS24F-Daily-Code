@@ -16,7 +16,7 @@ class Solution:
             else:
                 node = node.next
                             
-        if head.val == val:
+        if head.val == val :
             head = head.next
 
         return head
