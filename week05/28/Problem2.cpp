@@ -25,7 +25,6 @@ public:
 
         set<int> uniqueSet;
         ListNode* cur = head;
-
         while(cur){
             uniqueSet.insert(cur->val);
             cur = cur->next;
