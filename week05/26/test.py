@@ -1,1 +1,0 @@
-print("INFO: test.py")
