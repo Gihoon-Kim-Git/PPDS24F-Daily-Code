@@ -1,0 +1,1 @@
+print("INFO: test.py")
