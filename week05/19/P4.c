@@ -14,7 +14,7 @@ struct ListNode* addElements(struct ListNode *head, int val) {
 }
 
 struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
-    struct ListNode *merge_node = NULL;
+    struct ListNode *merge_node = (struct ListNode*)malloc(sizeof(struct ListNode));
     if (list1 != NULL && list2 != NULL) {
         if (list1->val < list2->val) {
             merge_node = list1;
