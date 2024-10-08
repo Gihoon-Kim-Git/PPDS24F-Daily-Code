@@ -65,12 +65,46 @@ each element of array A is an integer within the range [−10,000..10,000].*/
             elif n == 4 : R[n] = A[n] = max(R[n-1], R[n-2], R[n-3], R[n-4])        
             elif n == 5 : R[n] = A[n] = max(R[n-1], R[n-2], R[n-3], R[n-4], R[n-5])        
             else (n>=6) : R[n] = A[n] = max(R[n-1], R[n-2], R[n-3], R[n-4], R[n-5], R[n-6])      
+    3. R array를 만들 때 malloc.또는 calloc.
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>  //또는 #define MY_INT_MIN (-2147483647 - 1)
+
 
 int solution(int A[], int N){
+    int* R = (int*)calloc(N, sizeof(int)); // N개만큼 0으로 초기화 )
 
+    for (int i = 0 ; i < N; i++){
+        if (i == 0) R[i] = A[i];
+        else if (i == 1) R[i] = A[i] + A[0];
+        else if (i >= 2 && i <= 5){
+            int max_R = INT_MIN; //-20000으로 했을 때는 A가 전부 -20000처럼 매우 작은 수로 이루어졌을 때 wrong_answer
+            for (int j = 1; j <= i; j++){
+                if (max_R < R[i-j]) max_R = R[i-j];
+            }
+            R[i] = A[i] + max_R;
+        }
+        else { // i >= 6
+            int max_R = INT_MIN;
+            for (int j = 1; j <= 6; j++){
+                if (max_R < R[i-j]) max_R = R[i-j];
+            }
+            R[i] = A[i] + max_R;
+            }
+    }
 
+    int answer = R[N-1];
+    free(R);
+    return answer;
 }  
+
+int main(){
+    int A[] = [0, -4, -5, -2, -7, -9, -3, -10];
+    int N = 8;
+    int answer = solution(A,N );
+    printf("%d\n", answer);
+
+    return 0;
+}

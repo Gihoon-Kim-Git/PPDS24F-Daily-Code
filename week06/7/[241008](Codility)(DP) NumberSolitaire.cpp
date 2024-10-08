@@ -64,6 +64,7 @@ each element of array A is an integer within the range [−10,000..10,000].*/
             elif n == 4 : R[n] = A[n] = max(R[n-1], R[n-2], R[n-3], R[n-4])        
             elif n == 5 : R[n] = A[n] = max(R[n-1], R[n-2], R[n-3], R[n-4], R[n-5])        
             else (n>=6) : R[n] = A[n] = max(R[n-1], R[n-2], R[n-3], R[n-4], R[n-5], R[n-6])      
+    >> 이 수식 제한되는 이유 : max(a,b)만 문법상 가능함. 따라서 max_element(container) 문법 사용해서 재풀이.
 */
 
 #include <iostream>
@@ -76,10 +77,44 @@ int solution(vector<int> &A){
     vector<int> R;
 
     for (int i = 0; i < aLen; i++){
-
-
+        if (i == 0) R.push_back(A[0]);
+        else if (i == 1) R.push_back(A[i] + A[0]);
+        else if (i >= 2 && i <= 5){ 
+            int maxR = *max_element(R.begin(),R.end());
+            R.push_back(A[i] + maxR);
+        } else {
+            int maxR = *max_element(R.end() - 6 , R.end());
+            R.push_back(A[i] + maxR);
+        }
     }
-
-
     return R[aLen-1];
 }
+
+
+/* 기억 : max_element 문법
+주의 : min_element()나 max_element()는 iterator(반복자)를 반환한다.
+    따라서 값을 가져올 때에는 "*" 를 잊지 말아야 한다.
+
+예시코드 :
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <array>
+
+int main()
+{
+    std::vector<int> vecData = { 1, 5, 3, 6, 8, 3, 2, 9 };  
+    int arrData1[] = { 1, 5, 3, 6, 8, 3, 2, 9 };
+    std::array<int, 8> arrData2 = { 1, 5, 3, 6, 8, 3, 2, 9 };
+    
+    int minElement1 = *std::min_element(vecData.begin(), vecData.end());                // 1
+    int minIndex = std::min_element(vecData.begin(), vecData.end()) - vecData.begin();  // 2
+    int maxElement1 = *std::max_element(vecData.begin() + 1, vecData.begin() + 3);      // 3
+    int minElement2 = *std::min_element(arrData1, arrData1 + 8);                        // 4
+    int minElement3 = *std::min_element(arrData2.begin(), arrData2.end());              // 5
+    
+    return 0;
+}
+
+
+*/
