@@ -15,6 +15,7 @@ public:
             cur &= compare;
             result += cur;
         }
+        
         return result;
     }
 };

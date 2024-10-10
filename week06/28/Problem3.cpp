@@ -23,9 +23,11 @@ class Solution {
 public:
     void traversal(TreeNode* node, int isLeft, int& sum){
         if(node == nullptr){return;}
+
         if(node->left == nullptr && node->right == nullptr && isLeft == 1){
             sum += node->val;
         }
+        
         traversal(node->left, 1, sum);
         traversal(node->right, 0, sum);
     }

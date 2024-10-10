@@ -7,6 +7,7 @@ public:
     int maxNumberOfBalloons(string text) {
         int count = 0;
         while(true){
+
             for(char c : "balloon"){
                 auto pos = find(text.begin(), text.end(), c);
                 if(pos == text.end()){
@@ -14,6 +15,7 @@ public:
                 }
                 *pos = '\0';
             }
+            
             count++;
         }
     }
