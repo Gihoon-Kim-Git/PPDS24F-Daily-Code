@@ -5,11 +5,13 @@
 #         self.next = next
 class Solution:
     def middleNode(self, head):
-        slow = head
-        fast = head
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-
-        return slow
+        size = 0
+        curr = head
+        while curr:
+            size += 1
+            curr = curr.next
+        curr = head
+        for i in range(size // 2):
+            curr = curr.next
+        return curr
         
