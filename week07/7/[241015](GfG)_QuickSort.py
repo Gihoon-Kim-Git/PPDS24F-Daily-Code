@@ -20,8 +20,8 @@
 
 class Solution:
     def partition(self,arr,low,high):
-        pivotValue = arr[high];
-        i = low;
+        pivotValue = arr[high]
+        i = low
         
         for j in range(low, high):
             if arr[j] <= pivotValue:
@@ -35,13 +35,37 @@ class Solution:
         arr[high] = temp2
         
         return i
+    
+        """방법2 partition : pivotValue = arr[low]
+        pivotVal = arr[low]
+        i = low
+        j = high
+        
+        while i < j :
+            while arr[i] <= pivotVal and i <= high-1:
+                i += 1
+            while arr[j] >= pivotVal and j >= low+1:
+                j -= 1
+            if i < j:
+                temp = arr[j]
+                arr[j] = arr[i]
+                arr[i] = temp
+        
+        temp2 = arr[low]
+        arr[low] = arr[j]
+        arr[j] = temp2
+        
+        return j
+        
+        """
         
     #Function to sort a list using quick sort algorithm.
     def quickSort(self,arr,low,high):
         if low < high:
             pivot_done = self.partition(arr, low, high)
-            self.quickSort(self, low, pivot_done-1);
-            self.quickSort(self, pivot_done+1, high)
+            self.quickSort(arr, low, pivot_done-1)
+            self.quickSort(arr, pivot_done+1, high)
             
             
     
+//
