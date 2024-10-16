@@ -11,6 +11,25 @@
 
 */
 
+/* First element가 pivot
+    1. pivotVal = arr[low]
+    2. i = low, j = high
+    3. i,j가 교차할 때까지 반복. (i는 pivotVal보다 큰 값을 찾을 때까지 i++, j는 pivot보다 작은 값을 찾을 때 까지 j--)
+    4. i,j가 교차하기 전에 swap. 
+    5. 마지막에 arr[j]와 pivotVal을 교환. 
+    6. return j 
+*/
+
+/* Last element가 pivot
+    1. pivotVal = arr[high]
+    2. i = low-1, j = high-1
+    3. i는 pivotVal보다 큰 값을 찾을때까지 i++
+        j는 pivotVal보다 작은 값을 찾을 때까지 j--
+        i, j가 둘다 멈췄을 때 여전히 i< j (역전 전)이면 swap
+    4. i+1과 pivot을 교환
+    5. return i+1
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,6 +42,7 @@ void quickSort(int arr[], int low, int high){
     }
 }
 
+//partition1 : for문 활용 (Last element가 pivotVal)
 int partition(int arr[], int low, int high){
     int pivotValue = arr[high]; // last element가 pivot
     int i = low-1 ; //pivot보다 작은 요소의 마지막 인덱스를 추적
@@ -43,6 +63,31 @@ int partition(int arr[], int low, int high){
     arr[high] = temp2;
     return i+1;
 }
+
+//partition2 : while문 활용 (First element가 pivotVal)
+int partition(int arrp[], int low, int high){
+    int pivotVal = arr[low];
+    int i = low; //i : pivotVal보다 큰 원소 찾기위해 배열 왼->오로 이동.
+    int j = high; // j : pivotVal보다 작은 원소 찾기 위해서 배열 오->왼쪽으로 이동.
+
+    while (i < j){
+        while (arr[i] <= pivotVal && i <= high-1) i++; // i가 마지막원소(arr[high])를 넘어서지 않도록)
+        while (arr[j] >= pivotVal && j >= low+1) j--; //j가 pivot위치 다음까지 움직이도록.
+        if (i < j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+
+    int temp2 = arr[low];
+    arr[low] = arr[j];
+    arr[j] = temp2;
+
+    return j;
+}
+
+
 
 
 
