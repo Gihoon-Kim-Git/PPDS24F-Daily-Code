@@ -51,9 +51,46 @@
 // each element of array A is an integer within the range [0..M].
 
 #include <vector>
+#include <algorithm>
 
 using namespace std;    
 
 int solution(int K, int M, vector<int> &A) {
-    
+
+    // initialize
+    int min_sum = 0;
+    int max_sum = 0;
+    int sum = 0;
+
+    for (int a: A){
+        min_sum = max(min_sum, a);
+        max_sum += a;
+    }
+
+    // binary search
+    while (min_sum <= max_sum){
+        sum = (min_sum + max_sum) / 2;
+
+        int k = 1;
+        int temp_sum = 0;
+
+        for (int a: A){
+            if (temp_sum + a <= sum){
+                temp_sum += a;
+            } else {
+                k++;
+
+                if (k > K){
+                    min_sum = sum+1;
+                    break;
+                }
+                temp_sum = a;
+            }
+        }
+        if (k <= K){
+            max_sum = sum-1;
+        }
+    }
+
+    return min_sum;
 }
