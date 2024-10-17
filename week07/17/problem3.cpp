@@ -42,9 +42,22 @@
 
 
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int solution(vector<int> &A) {
+
+    // sorting
+    // 큰 수 3개 곱한거
+    // 작은 수 2개랑 큰 수 1개 곱한 거
+    // 두 값을 비교해서 큰 걸 반환
+
+    sort(A.begin(), A.end());
+
+    int max_product1 = A[A.size() - 1] * A[A.size() - 2] * A[A.size() - 3];
+    int max_product2 = A[0] * A[1] * A[A.size() - 1];
+
+    return max(max_product1, max_product2);
     
 }
