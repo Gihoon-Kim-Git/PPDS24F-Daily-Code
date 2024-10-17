@@ -27,6 +27,29 @@ using namespace std;
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
+
+        // 왼쪽 밑에서 시작
+        // target보다 작으면 위로 올라감
+        // target보다 크면 오른쪽으로 감
+
+        int m = matrix.size()-1;
+        int n = 0;
+
+        while (m >= 0 && n < matrix[0].size()){
+            if (matrix[m][n] == target){
+                return true;
+            }
+            else if (matrix[m][n] > target){
+                m--;
+            }
+            else{
+                n++;
+            }
+        }
         
+
+        return false;
+    
     }
+
 };
