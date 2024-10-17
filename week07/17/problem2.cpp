@@ -55,13 +55,43 @@ class Solution
     //Function to sort an array using quick sort algorithm.
     void quickSort(int arr[], int low, int high)
     {
+        
+        if (low >= high){
+            return;
+        }
+
         // code here
+        int pivot = partition(arr, low, high);
+
+        quickSort(arr, low, pivot-1);
+        quickSort(arr, pivot+1, high);
+
     }
     
     public:
-    int partition (int arr[], int low, int high)
-    {
-       // Your code here
+    int partition (int arr[], int low, int high){
+
+        int pivot = arr[low];
+        int init_row = low;
+
+        while (low < high){
+            while (arr[low] <= pivot) low++;
+            while (arr[high] > pivot) high--;
+
+            if (low < high){
+                swap(arr, low, high);
+            }
+        }
+
+        swap(arr, init_row, high);
+        
+        return high;
+    }
+
+    void swap(int arr[], int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 };
 
