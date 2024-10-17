@@ -65,7 +65,7 @@ int partition(int arr[], int low, int high){
 }
 
 //partition2 : while문 활용 (First element가 pivotVal)
-int partition(int arrp[], int low, int high){
+int partition(int arr[], int low, int high){
     int pivotVal = arr[low];
     int i = low; //i : pivotVal보다 큰 원소 찾기위해 배열 왼->오로 이동.
     int j = high; // j : pivotVal보다 작은 원소 찾기 위해서 배열 오->왼쪽으로 이동.
@@ -92,7 +92,7 @@ int partition(int arrp[], int low, int high){
 
 
 
-//-------<틀린 나의 풀이>--------------------------------
+//-------<나의 풀이>--------------------------------
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -102,7 +102,7 @@ int partition (int arr[], int low, int high){
 
     //1. pivot 선정 (last element로)
     int pivot = high;
-    high--;
+    //high--;   << 이 부분을 없애야, 피벗이 최댓값인 경우(반례) 24 18 38 43 14 40 1 54   (피벗이 최댓값인 경우...) )도 잘 동작한다.
     //2. low, high를 움직인다.  (low가 멈추면 high를 움직이도록.)
     while (low < high){ // low >= high일 때 while문 탈출
         if (arr[low] <= arr[pivot]) low++;
@@ -115,7 +115,7 @@ int partition (int arr[], int low, int high){
             }
         }
     }
-    /*while 문 이하를 아래와 같이 바꾸어 줄 수 있음 : main은 통과하지만... 반례) 24 18 38 43 14 40 1 54  (피벗이 최댓값인 경우...)
+    /*while 문 이하를 아래와 같이 바꾸어 줄 수 있음 . 
     while (low < high){ // low >= high일 때 while문 탈출
         while (low < high && arr[low] <= arr[pivot]) low++;
         while (low < high && arr[high] >= arr[pivot]) high--;
@@ -161,7 +161,7 @@ int main(){
     int arr[] = {4,1,3,9,7};
     int low = 0;
     int high = 4;
-    quickSort(arr,low, high);
+    quickSort(arr,low, high);  // 1 3 4 7 9
 
     for (int i = 0; i < 5; i++){
         printf("%d ", arr[i]);
@@ -171,12 +171,12 @@ int main(){
     int arr2[] = { 2, 1, 6, 10, 4, 1, 3, 9, 7};
     int low2 = 0;
     int high2 = 8;
-    quickSort(arr2,low2, high2);
+    quickSort(arr2,low2, high2);  // 1 1 2 3 4 6 7 9
 
     for (int i = 0; i < 8; i++){
         printf("%d ", arr2[i]);
     }
 }
 
-/*내 코드 돌린 결과 : ex2가 제대로 sort되지 않음. (이유 : partition 함수의 논리 오류. while 문.)
-quickSort called.new_pivot : 3quickSort called.new_pivot : 1quickSort called.quickSort called.quickSort called.1 3 4 7 9 quickSort called.new_pivot : 6quickSort called.new_pivot : 1quickSort called.quickSort called.new_pivot : 1quickSort called.quickSort called.new_pivot : 4quickSort called.quickSort called.quickSort called.1 2 1 3 6 4 7 9*/
+/*코드 결과
+quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.1 3 4 7 9 quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.quickSort called.1 1 2 3 4 6 7 9*/
