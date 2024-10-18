@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/jyp/Documents/GitHub/PPDS24F-Daily-Code/week07",
+      "program": "/Users/jyp/Documents/GitHub/PPDS24F-Daily-Code/week07/build/Debug/outDebug"
+    }
+  ]
+}
