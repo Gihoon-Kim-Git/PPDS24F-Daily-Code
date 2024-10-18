@@ -71,21 +71,27 @@ int isValidPartition(int K, int max_sum, int A[], int N){
 }
 
 int solution(int K, int M, int A[], int N){
-    int low = M;
+    int low = 0;
     int high = 0;
 
     for (int i = 0; i < N; i++){
         high += A[i];
+        if (low < A[i]) low = A[i];
     }
 
-    while (low < high){
+    int result = high;
+
+    while (low <= high){
         int mid = (low + high)/2;
 
-        if (isValidPartition(K,mid, A, N) == 1) high = mid;
+        if (isValidPartition(K,mid, A, N) == 1) {
+            result = mid;
+            high = mid-1;
+        }
         else low = mid+1;
     }
 
-    return high;
+    return result;
 }
 
 int main(){
