@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Solution(object):
     def maxNumberOfBalloons(self, text):
         """
