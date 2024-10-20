@@ -48,27 +48,33 @@ int isValidPartition(int K, int max_sum, vector<int> &A){
     for (int a : A){
         if (temp_sum + a > max_sum){
             current_K++;
-            temp_sum = 0;
+            temp_sum = a;
         }
-        temp_sum += a;
+        else temp_sum += a;
     }
     if (current_K > K) return 0;
     else return 1;
 }
 
 int solution(int K, int M, vector<int> &A){
-    int low = M;
+    int low = 0;
     int high = 0;
 
     for (int a : A){
         high += a;
+        if (a > low) low = a;
     }
 
-    while (low < high){
+    int result = high;
+
+    while (low <= high){
         int mid = (low + high) / 2;
-        if (isValidPartition(K, mid, A) == 1) high = mid;
-        else low = mid-1;
+        if (isValidPartition(K, mid, A) == 1) {
+            result = mid;
+            high = mid-1;
+        }
+        else low = mid+1;
     }
 
-    return high;
+    return result;
 }

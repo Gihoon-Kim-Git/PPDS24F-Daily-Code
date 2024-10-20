@@ -60,28 +60,33 @@ def isValidPartition(K, max_sum, A) :
         if current_block_sum + A[i] > max_sum :
             current_block += 1
             current_block_sum = A[i]
-            
-            if current_block > K : 
-              return False  
         else :
             current_block_sum += A[i]
-            
-    return True
+    if current_block > K : 
+      return False  
+    else:
+      return True
     
 def solution(K,M,A) :
-    low = M
-    high = sum(A)
+    low = max(A) # block에 하나의 숫자만 들어갈 때
+    high = sum(A) # block에 모든 element가 들어갈 때
+    
+    result = high
         
-    while low < high :
-        mid = (low + high) // 2
+    while low <= high :
+        mid = (low + high) // 2 
 
-        if isValidPartition(K, mid, A) == True: #mid값을 넘지않고 K개 이내로 분할 가능한가?
-            high = mid
+        if isValidPartition(K, mid, A) == True: 
+          # find smaller mid
+            result = mid
+            high = mid-1
         else :
+          # find larger mid
             low = mid + 1
     
-    return low
+    return result
   
 
 if __name__ == "__main__" :
   print(solution(3, 5, [2, 1, 5, 1, 2, 2, 2])) #6
+  print(solution(1, 1, [0])) #0
