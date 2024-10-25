@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -21,3 +23,18 @@ class Solution:
         
         # Return the new head, which is dummy.next
         return dummy.next
+    
+if __name__ == "__main__":
+    sol = Solution()
+    head = ListNode(1, ListNode(2, ListNode(6, ListNode(3, ListNode(4, ListNode(5, ListNode(6)))))))
+    result = sol.removeElements(head, 4)
+
+    # print result as list
+    result_list = []
+    current = result
+    while current:
+        result_list.append(current.val)
+        current = current.next
+    
+    # print result as list
+    print("Result:", result_list)

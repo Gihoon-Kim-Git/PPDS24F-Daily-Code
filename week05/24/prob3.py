@@ -17,3 +17,8 @@ class Solution:
         
         # When fast reaches the end, slow will be at the middle
         return slow
+
+if __name__ == "__main__":
+    sol = Solution()
+    head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+    result = sol.middleNode(head)
