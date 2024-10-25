@@ -1,27 +1,26 @@
-def solution(K, M, A):
-    def can_divide(A, K, max_block_sum):
-        block_sum = 0
-        blocks = 1
-        for num in A:
-            if block_sum + num > max_block_sum:
-                blocks += 1
-                block_sum = num
-                if blocks > K:
-                    return False
-            else:
-                block_sum += num
-        return True
+class MinStack(object):
 
-    left = max(A)
-    right = sum(A)
-    result = right
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
 
-    while left <= right:
-        mid = (left + right) // 2
-        if can_divide(A, K, mid):
-            result = mid
-            right = mid - 1
-        else:
-            left = mid + 1
+    def push(self, val):
+        self.stack.append(val)
+        if not self.min_stack or val <= self.min_stack[-1]:
+            self.min_stack.append(val)
 
-    return result
+    def pop(self):
+        if self.stack:
+            if self.stack[-1] == self.min_stack[-1]:
+                self.min_stack.pop()
+            self.stack.pop()
+
+    def top(self):
+        if self.stack:
+            return self.stack[-1]
+        return None
+
+    def getMin(self):
+        if self.min_stack:
+            return self.min_stack[-1]
+        return None

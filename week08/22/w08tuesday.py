@@ -1,15 +1,20 @@
-def partition(arr, low, high):
-    pivot = arr[high]
-    i = low - 1
-    for j in range(low, high):
-        if arr[j] <= pivot:
-            i += 1
-            arr[i], arr[j] = arr[j], arr[i]
-    arr[i + 1], arr[high] = arr[high], arr[i + 1]
-    return i + 1
 
-def quickSort(arr, low, high):
-    if low < high:
-        pi = partition(arr, low, high)
-        quickSort(arr, low, pi - 1)
-        quickSort(arr, pi + 1, high)
+class MyCalendarTwo:
+
+    def __init__(self):
+        self.events = []
+        self.overlaps = []
+
+    def book(self, start, end):
+        for o_start, o_end in self.overlaps:
+            if max(start, o_start) < min(end, o_end):
+                return False
+
+        for e_start, e_end in self.events:
+            if max(start, e_start) < min(end, e_end):
+                overlap_start = max(start, e_start)
+                overlap_end = min(end, e_end)
+                self.overlaps.append((overlap_start, overlap_end))
+
+        self.events.append((start, end))
+        return True
