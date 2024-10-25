@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -20,3 +22,8 @@ class Solution:
         
         # Return the head of the modified list
         return head
+
+if __name__ == "__main__":
+    sol = Solution()
+    head = ListNode(1, ListNode(1, ListNode(2, ListNode(3, ListNode(3)))))
+    result = sol.deleteDuplicates(head)

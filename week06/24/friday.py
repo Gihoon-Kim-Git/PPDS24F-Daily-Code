@@ -23,3 +23,4 @@ class Solution:
         # Calculate the maximum number of "balloon" that can be formed
         # We need 2 'l's and 2 'o's, so we divide those counts by 2
         return min(b_count, a_count, l_count // 2, o_count // 2, n_count)
+        
