@@ -8,4 +8,4 @@
 
 ## Thursday. [Max Profit](https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit/)
 
-## Friday. [Dijkstra Algorithm](https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1?)
+## Friday. [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/)
