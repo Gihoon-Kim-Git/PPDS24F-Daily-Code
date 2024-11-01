@@ -33,4 +33,4 @@ def maxDepth(self, root:Node)->int:
         return max_depth_of_child + 1
                 
         
-    
+# 다른 방법 : BFS활용. queue를 넣을때 (node, cur_level+1) 로 tuple 활용
