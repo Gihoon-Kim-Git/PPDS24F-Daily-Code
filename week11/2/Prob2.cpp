@@ -36,5 +36,5 @@ int main(){
     cost.push_back(10);
     cost.push_back(15);
     cost.push_back(20);
-    sol.minCostClimbingStairs(cost);
+    cout << sol.minCostClimbingStairs(cost) << endl;
 }
