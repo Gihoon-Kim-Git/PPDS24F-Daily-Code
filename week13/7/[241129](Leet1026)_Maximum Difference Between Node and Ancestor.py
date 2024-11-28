@@ -94,7 +94,9 @@ class Solution(object):
         #왼쪽 자식과 오른쪽 자식에 대해 재귀적으로 helper함수 호출
         self.helper(root.left, min_val, max_val)
         self.helper(root.right, min_val, max_val)
-            
+
+
+
 # [다른방법 2] DFS활용-------------------------------------------------------
 
 class Solution(object):
