@@ -19,5 +19,5 @@ class Solution:
                 ans=max(ans,go(node.left,min(mn,node.val),max(mx,node.val)))
             if node.right:
                 ans=max(ans,go(node.right,min(mn,node.val),max(mx,node.val)))
-            return ans
+            return anss
         return go(root,INF,-INF)            
